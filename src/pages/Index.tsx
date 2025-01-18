@@ -1,6 +1,34 @@
 import { motion } from 'framer-motion';
 import Navigation from '../components/Navigation';
 import { Card, CardContent } from '../components/ui/card';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+
+const testimonials = [
+  {
+    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+    quote: "Working with this developer was an amazing experience. The attention to detail and technical expertise exceeded our expectations.",
+    author: "John Smith",
+    position: "CTO, TechCorp"
+  },
+  {
+    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+    quote: "The solutions provided were innovative and perfectly tailored to our needs. Highly recommended!",
+    author: "Sarah Johnson",
+    position: "Product Manager, InnovateLabs"
+  },
+  {
+    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+    quote: "Outstanding work on our project. The results speak for themselves - professional, modern, and user-friendly.",
+    author: "Michael Chen",
+    position: "Founder, DigitalWave"
+  }
+];
 
 const Index = () => {
   return (
@@ -39,6 +67,46 @@ const Index = () => {
             </div>
           </div>
         </motion.div>
+
+        {/* Testimonials Section */}
+        <motion.section
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+          className="py-16 border-t"
+        >
+          <div className="max-w-6xl mx-auto px-4">
+            <h2 className="text-3xl font-bold mb-12 text-center">What Clients Say</h2>
+            <Carousel className="w-full">
+              <CarouselContent>
+                {testimonials.map((testimonial, index) => (
+                  <CarouselItem key={index}>
+                    <Card className="border-0 shadow-none">
+                      <CardContent className="flex flex-col items-center text-center p-6">
+                        <div className="w-24 h-24 mb-6 overflow-hidden rounded-full">
+                          <img
+                            src={testimonial.image}
+                            alt={testimonial.author}
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
+                        <blockquote className="text-lg italic mb-6">
+                          "{testimonial.quote}"
+                        </blockquote>
+                        <div>
+                          <p className="font-semibold">{testimonial.author}</p>
+                          <p className="text-sm text-muted-foreground">{testimonial.position}</p>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious className="hidden md:flex" />
+              <CarouselNext className="hidden md:flex" />
+            </Carousel>
+          </div>
+        </motion.section>
 
         {/* About Section */}
         <motion.section

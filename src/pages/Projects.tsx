@@ -4,13 +4,6 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { ExternalLink, Github } from 'lucide-react';
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
 
 const projects = [
   {
@@ -39,19 +32,16 @@ const projects = [
   },
 ];
 
-const featuredProjects = [{
-  title: "AI-Powered Analytics Dashboard",
-  description: "An advanced analytics platform leveraging artificial intelligence for data insights",
-  images: [
-    "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-    "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-    "https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-    "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3"
-  ],
-  tags: ["AI/ML", "Python", "React"],
-  demoUrl: "https://demo.com",
-  githubUrl: "https://github.com",
-}];
+const featuredProjects = [
+  {
+    title: "AI-Powered Analytics Dashboard",
+    description: "An advanced analytics platform leveraging artificial intelligence for data insights",
+    image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+    tags: ["AI/ML", "Python", "React"],
+    demoUrl: "https://demo.com",
+    githubUrl: "https://github.com",
+  }
+];
 
 const Projects = () => {
   return (
@@ -85,23 +75,11 @@ const Projects = () => {
           {featuredProjects.map((project, index) => (
             <Card key={index} className="overflow-hidden hover-scale">
               <div className="aspect-video relative">
-                <Carousel className="w-full">
-                  <CarouselContent>
-                    {project.images.map((image, imageIndex) => (
-                      <CarouselItem key={imageIndex}>
-                        <div className="aspect-video relative">
-                          <img
-                            src={image}
-                            alt={`${project.title} screenshot ${imageIndex + 1}`}
-                            className="w-full h-full object-cover rounded-t-lg"
-                          />
-                        </div>
-                      </CarouselItem>
-                    ))}
-                  </CarouselContent>
-                  <CarouselPrevious />
-                  <CarouselNext />
-                </Carousel>
+                <img
+                  src={project.image}
+                  alt={`${project.title} screenshot`}
+                  className="w-full h-full object-cover rounded-t-lg"
+                />
               </div>
               <CardHeader>
                 <CardTitle>{project.title}</CardTitle>
